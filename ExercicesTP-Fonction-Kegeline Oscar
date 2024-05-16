@@ -1,0 +1,88 @@
+
+###Fonction multiple de 3 et 5 ###
+# Créer une fonction indiquant si un nombre est à la fois multiple de 3 et de 5
+multiple_3_et_5 <- function(N) {
+  if (N %% 3 == 0 && N %% 5 == 0) {
+    return(TRUE)
+  } else {
+    return(FALSE)
+  }
+}
+
+# Tester la fonction 
+N1 <- 15 #Test 1
+if (multiple_3_et_5(N1)) {
+  cat(N1, "est un multiple de 3 et de 5.\n")
+} else {
+  cat(N1, "n'est pas un multiple de 3 et de 5.\n")
+}
+
+
+# Tester la fonction 
+N2 <- 27 #Test 1
+if (multiple_3_et_5(N2)) {
+  cat(N2, "est un multiple de 3 et de 5.\n")
+} else {
+  cat(N2, "n'est pas un multiple de 3 et de 5.\n")
+}
+
+### Fonction pour trouver les mutiples dans un vecteur###
+# Créer une fonction pour trouver les multiples de 3 et 5 dans un vecteur
+multiples_3_et_5 <- function(vect) {
+  totalvec <- vect[vect %% 3 == 0 & vect %% 5 == 0]
+  return(totalvec)
+}
+
+# Tester la fonction 
+vect1 <- c(1, 3, 5, 10, 15, 20, 30, 45, 50, 60, 70, 75, 80, 90, 100)
+
+# Calculer les mutliples de 3 et 5 dans le vecteur vec1
+resultat <- multiples_3_et_5(vect1)
+
+# Afficher le résultat
+print(resultat)
+
+### Fonction pour afficher les coefficients et les t-values d'une régression linéaire###
+
+# Créer une fonction pour afficher les coefficients et les t-values d'une régression linéaire
+coefficients_et_tvalues <- function(regL) {
+  summary_regL <- summary(regL)
+  
+  # Extraire les coefficients et les t-values
+  coefficients <- summary_regL$coefficients[, 1]  # Estimates
+  t_values <- summary_regL$coefficients[, 3]  # t-values
+  
+  # Créer un data frame pour les afficher proprement
+  resultat <- data.frame(Estimate = coefficients, t_value = t_values)
+  
+  return(resultat)
+}
+
+# Tester la fonction
+# Charger un exemple de jeu de données mtcars
+data(mtcars) # test 1
+
+# Réaliser une régression linéaire
+RegL <- lm(mpg ~ wt + hp, data = mtcars)
+
+# Obtenir les coefficients et les t-values
+resultat <- coefficients_et_tvalues(RegL)
+
+# Afficher le résultat
+print(resultat)
+
+# Tester la fonction
+# Charger un exemple de jeu de données iris
+data(iris) # test 2
+
+# Réaliser une régression linéaire
+RegL1 <- lm(Sepal.Length ~ Sepal.Width + Petal.Length, data = iris)
+
+# Obtenir les coefficients et les t-values
+resultat1 <- coefficients_et_tvalues(RegL1)
+
+# Afficher le résultat
+print(resultat1)
+
+
+
